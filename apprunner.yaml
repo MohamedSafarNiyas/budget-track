@@ -1,0 +1,35 @@
+version: 1.0
+runtime: nodejs18
+build:
+  commands:
+    pre-build:
+      - npm ci
+    build:
+      - npm install
+      - npm run build
+env:
+  - name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    value: pk_test_dXAtcHJhd24tNzEuY2xlcmsuYWNjb3VudHMuZGV2JA
+  - name: CLERK_SECRET_KEY
+    value: sk_test_nJR1AAE0zmlj7PakagIpzfP0YCwtSpaJaV2kmMjlkb
+  - name: NEXT_PUBLIC_CLERK_SIGN_IN_URL
+    value: /sign-in
+  - name: NEXT_PUBLIC_CLERK_SIGN_UP_URL
+    value: /sign-up
+  - name: NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL
+    value: /
+  - name: NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL
+    value: /
+  - name: NEXT_PUBLIC_DATABASE_URL
+    value: postgresql://admin:QWERTY12345QWERTY67890@database-1-demo.cnyqa7p4lar8.ap-southeast-1.rds.amazonaws.com:5432/postgres?sslmode=require
+  - name: OPENAI_API_KEY
+    value: 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
+  - name: NODE_ENV
+    value: production
+  - name: FORCE_DYNAMIC
+    value: 1
+run:
+  command: npm start
+  network:
+    port: 3000
+    env: PORT
